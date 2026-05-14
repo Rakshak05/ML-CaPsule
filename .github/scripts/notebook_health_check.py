@@ -10,12 +10,30 @@ import subprocess
 from pathlib import Path
 
 def find_notebooks(root_dir="."):
-    """Find all Jupyter notebooks in the repository."""
+    """Find notebooks in specific directories only (avoid scanning entire 1.8GB repo)."""
     notebooks = []
-    for path in Path(root_dir).rglob("*.ipynb"):
-        # Skip hidden directories and checkpoints
-        if ".ipynb_checkpoints" not in str(path):
+    root_path = Path(root_dir)
+    
+    # Only scan these folders (common notebook locations)
+    folders_to_scan = ["notebooks", "examples", "tutorials", "docs", "guides"]
+    
+    for folder in folders_to_scan:
+        folder_path = root_path / folder
+        if folder_path.exists():
+            for path in folder_path.rglob("*.ipynb"):
+                if ".ipynb_checkpoints" not in str(path):
+                    notebooks.append(path)
+    
+    # If no notebooks found in specific folders, scan current directory only (not subdirectories)
+    if not notebooks:
+        for path in root_path.glob("*.ipynb"):
             notebooks.append(path)
+    
+    # Also check for notebooks in root level (if any)
+    for path in root_path.glob("*.ipynb"):
+        if path not in notebooks:
+            notebooks.append(path)
+    
     return notebooks
 
 def test_notebook(notebook_path):
@@ -49,6 +67,10 @@ def test_notebook(notebook_path):
 def main():
     notebooks = find_notebooks()
     print(f"Found {len(notebooks)} notebooks")
+    
+    if not notebooks:
+        print("No notebooks found to test.")
+        sys.exit(0)
     
     results = []
     for nb in notebooks:
