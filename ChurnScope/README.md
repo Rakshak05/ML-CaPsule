@@ -41,7 +41,6 @@ https://www.kaggle.com/datasets/blastchar/telco-customer-churn
 
 Gradient Boosting was selected as the final model based on the best overall ROC-AUC performance while maintaining strong churn recall.
 
-![Model Comparison](./assets/compare.png)
 
 ---
 
