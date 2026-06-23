@@ -1,5 +1,7 @@
 # Rainfall-Trends-India
-Source: Indian rainfall dataset (1901–2015)
+## Dataset
+- Source: Indian rainfall dataset (1901–2015)
+- The notebook downloads the dataset as `data.csv` via `gdown`: https://drive.google.com/file/d/1LfTTYEYkDoD8wFEv-s_Ws-wj3LLHFdzI/view?usp=sharing
 
 This project analyzes over a century of rainfall data in India to identify long-term trends, seasonal patterns, anomalies, and future forecasts. Using data science and machine learning techniques, the study explores rainfall variability, detects extreme events like droughts and floods, and predicts future rainfall patterns using time series forecasting.
 
