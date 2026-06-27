@@ -5,8 +5,7 @@ on:
     branches: [main, master]
   pull_request:
     branches: [main, master]
-  schedule:
-    - cron: '0 0 * * *'  # Run daily
+  workflow_dispatch:
 
 jobs:
   test-notebooks:
