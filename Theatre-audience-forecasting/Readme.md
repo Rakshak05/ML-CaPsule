@@ -25,6 +25,18 @@ To implement this project:
   Install the libraries globally or locally for the project
   You may select the specific values for the date variables or may run the code as it is
 ```
+## Output Screenshots
+
+### Exploratory Data Analysis
+
+![EDA](EDA_1.png)
+
+![EDA](EDA_2.png)
+
+
+### Model Evaluation
+
+![Evaluation](Prediction.png)
 
 
 ## Authors
