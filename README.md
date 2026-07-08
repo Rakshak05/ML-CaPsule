@@ -40,7 +40,7 @@ Welcome to **ML-Capsule**!!! This repository is a comprehensive collection of ma
 - [📜 Summary](#-summary)
 - [🔗 Useful URLs](#-useful-urls)
 - [🚀 Get Started](#-get-started)
-- [⚙️ Contribution Guidelines](#️%EF%B8%8F-contribution-guidelines)
+- [⚙️ Contribution Guidelines](#%EF%B8%8F-contribution-guidelines)
 - [📖 Code of Conduct](#-code-of-conduct)
 - [📝 License](#-license)
 - [✨ Contributors](#some-awesome-contributors-)
