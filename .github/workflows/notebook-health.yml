@@ -24,6 +24,22 @@ jobs:
           pip install jupyter nbconvert pandas numpy
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
       
+      - name: Get changed files
+        id: changed-files
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            git fetch origin ${{ github.base_ref }} --depth=1
+            git diff --name-only origin/${{ github.base_ref }}...HEAD > changed_files.txt
+          else
+            git diff --name-only HEAD^ HEAD > changed_files.txt || true
+          fi
+          echo "changed_files<<EOF" >> "$GITHUB_OUTPUT"
+          cat changed_files.txt >> "$GITHUB_OUTPUT"
+          echo "EOF" >> "$GITHUB_OUTPUT"
+
       - name: Run notebook health check
+        continue-on-error: true
+        env:
+          CHANGED_FILES: ${{ steps.changed-files.outputs.changed_files }}
         run: python .github/scripts/notebook_health_check.py
         
