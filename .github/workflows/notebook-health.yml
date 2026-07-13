@@ -64,11 +64,21 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
-          # Pull the output from the previous step
+          REPO: ${{ github.repository }}
           REPORT_BODY: ${{ steps.health_check.outputs.report }}
         run: |
           if [ -n "$REPORT_BODY" ]; then
-            gh pr comment $PR_NUMBER --body "$REPORT_BODY"
+            echo "Creating JSON payload safely with jq..."
+            # jq safely escapes newlines and special characters for the JSON payload
+            jq -n --arg body "$REPORT_BODY" '{body: $body}' > payload.json
+            
+            echo "Posting comment to PR #$PR_NUMBER..."
+            curl -s -S -X POST \
+              -H "Authorization: token $GITHUB_TOKEN" \
+              -H "Accept: application/vnd.github.v3+json" \
+              -H "Content-Type: application/json" \
+              -d @payload.json \
+              "https://api.github.com/repos/$REPO/issues/$PR_NUMBER/comments"
           else
             echo "No report body found in GITHUB_OUTPUT."
           fi
