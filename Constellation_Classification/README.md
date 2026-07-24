@@ -22,7 +22,11 @@ Every star in the night sky belongs to one of the **88 standard constellations**
 ---
 
 ## 📊 Dataset Details
-The model uses the `NeuML/constellations` dataset from Hugging Face, which contains records of **11,681 stars** extracted from Wikipedia.
+The dataset used in this project is stored within the codebase.
+- **Dataset File**: [constellations.csv](constellations.csv)
+- **GitHub Link**: [constellations.csv on GitHub](https://github.com/Rakshak05/ML-CaPsule/blob/main/Constellation_Classification/constellations.csv) (or [Raw CSV Link](https://raw.githubusercontent.com/Rakshak05/ML-CaPsule/main/Constellation_Classification/constellations.csv))
+
+The model uses the `NeuML/constellations` dataset, which contains records of **11,681 stars** extracted from Wikipedia.
 ### Features:
 - **Right Ascension (RA)**: Celestial longitude coordinate (string format, e.g., `00h 08m 23.17s`).
 - **Declination (Dec)**: Celestial latitude coordinate (string format, e.g., `+29° 05′ 27.0″`).
